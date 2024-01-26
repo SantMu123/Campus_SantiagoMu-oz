@@ -1,12 +1,27 @@
-n0 = 0
-n1 = 1
+import random
 
-cantidad = eval(input("Ingrese la cantidad de numeros: "))
+decision = input("Selecciona (R) (P) (S): ")
 
-for i in range(cantidad):
-    print(n0)
-    print(n1)
+aleatorio = random.randint(1,3)
 
-    n1 = n0
-    n0 = fib
-    fib = n0 + n1
+if decision == "R":
+    if aleatorio == 1:
+        print("Ha habido empate")
+    if aleatorio == 2:
+        print("Ha sacado Papel, Derrota")
+    if aleatorio == 3:
+        print("Ha sacado Tijera, Victoria") 
+elif decision == "P":
+    if aleatorio == 1:
+        print("Ha sacado Papel, Victoria")
+    if aleatorio == 2:
+        print("Ha habido empate")
+    if aleatorio == 3:
+        print("Ha sacado Tijera, Victoria")
+else:
+    if aleatorio == 1:
+        print("Ha sacado Piedra, Derrota")
+    if aleatorio == 2:
+        print("Ha sacado Papel, Victoria")
+    if aleatorio == 3:
+        print("Ha habido empate")
