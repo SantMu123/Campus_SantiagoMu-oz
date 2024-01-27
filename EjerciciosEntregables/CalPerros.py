@@ -21,6 +21,15 @@ elif tamaño == "P":
 else:
     print("Comando incorrecto")
         
+
+"""
+Pido al usuario el tamaño del perro y la edad, creo tres listas para cada tamaño del perro
+que contiene la edad correspondiente en años de humano, luego, por medio de la estructura condicional
+if, elif y else direccione según el tamaño del perro del usuario para luego aplicar el el año del perro
+como el indice de la lista correspondiente, si no se selecciona ningún comando, sale el mensaje "comando
+incorrecto"
+
+"""
     
         
 

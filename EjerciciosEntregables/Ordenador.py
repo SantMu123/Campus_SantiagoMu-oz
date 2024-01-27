@@ -11,4 +11,6 @@ while Positivo:
     if i < 0:
         Lista.insert(0,i)
         Positivo = False
+
+Lista.pop()
 print(Lista)
