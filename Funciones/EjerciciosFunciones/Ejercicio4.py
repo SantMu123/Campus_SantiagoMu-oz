@@ -19,17 +19,17 @@ disponibles por cada tipo.
 """
 def actualizacion(habitacion, Habitaciones):
     if habitacion == "simple":
-        Habitaciones[0] -= 1
-        if Habitaciones == 0:
-            print("No hay más cupo para habitaciones simples") 
+        Habitaciones[0][0] -= 1
+        if Habitaciones[0][0] == 0:
+            print("No hay más cupo para habitaciones simples")
     elif habitacion == "doble":
-        Habitaciones[1] -= 1
-        if Habitaciones == 0:
-            print("No hay más cupo para habitaciones dobles") 
-    if habitacion == "suite":
-        Habitaciones[2] -= 1
-        if Habitaciones == 0:
-            print("No hay más cupo para habitaciones suite") 
+        Habitaciones[0][1] -= 1
+        if Habitaciones[0][1] == 0:
+            print("No hay más cupo para habitaciones dobles")
+    elif habitacion == "suite":
+        Habitaciones[0][2] -= 1
+        if Habitaciones[0][2] == 0:
+            print("No hay más cupo para habitaciones suite")
 
 def costoTotal(habitacion, duracion):
     costoDia = 100
@@ -97,3 +97,4 @@ while comando != 0:
         
 
 imprimir_tabla(Datos)
+
