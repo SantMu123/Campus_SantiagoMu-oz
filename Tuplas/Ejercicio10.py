@@ -23,4 +23,8 @@ for i in tupla:
 
 print("el minimo es: ", min, " el maximo es: ", may)
 
-        
+
+my_tuple = (1, 2, 3, 'a', 'b', 'c')
+
+is_present = 3 in my_tuple
+

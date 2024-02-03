@@ -7,5 +7,10 @@ lon = len(diccionario)
 
 for i in diccionario:
     print(diccionario[i])
+    
+
+
+
+
 
 
