@@ -1,0 +1,13 @@
+{
+    "persona": {
+      "nombre": "Juan",
+      "edad": 30,
+      "ciudad": "Ciudad de México"
+    },
+    "producto": {
+      "nombre": "Computadora portátil",
+      "precio": 1200,
+      "stock": 10
+    }
+  }
+  
