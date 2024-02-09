@@ -11,6 +11,8 @@ Para participar los empleados deben cancelar un aporte de 50.000 COP. Por lo tan
 -No permitir quitar del registro a participantes que ya hayan pagado, pues no se aceptan devoluciones
 -Marcar eventos ya realizados.
 -No permitir eliminar o modificar eventos ya realizados.
+
+la lista de empleados debe tener otro parametro ---> pago
 """
 def Pago(nombre, pago, listaPersonas):
     bandera = False
@@ -20,7 +22,21 @@ def Pago(nombre, pago, listaPersonas):
             bandera = True
         if not bandera:
             print("No se ha ingresado el nombre de la persona")
+            
+def MostrarRegistrado(listaPersonas):
+    print("|----------|----------|----------|----------|")
+    print("|----IDE---|--Nombre--|---Edad---|--Cargo---|")
+    print("|----------|----------|----------|----------|")
+    for i in listaPersonas:
+        print(f"|{list(i.values())[0]:^10}|{list(i.values())[1]:^10}|{list(i.values())[2]:^10}|{list(i.values())[3]:^10}|")
 
+def MostrarEvento(listaEvento):
+    print("|----------|----------|----------|")
+    print("|--Nombre--|--Lugar---|--Fecha---|")
+    print("|----------|----------|----------|")
+    for i in listaEvento:
+        print(f"|{list(i.values())[0]:^10}|{list(i.values())[1]:^10}|{list(i.values())[2]:^10}|")
+        
 def unir(nombre, evento, listaEvento, listaPersonas):
     listaEvento = []
 
@@ -29,27 +45,27 @@ def añadir(documento, nombre, edad, cargo, listaPersonas, pago = False):
     info = {"documento":documento, "nombre":nombre, "edad":edad, "cargo":cargo, "Pago":pago}
     listaPersonas.append(info)
 
-def Evento(nombreEvento, locacion, dia, listaEvento, estado):
+def Evento(nombreEvento, locacion, dia, listaEvento, estado = True):
     info = {"Nombre_Evento":nombreEvento, "Lugar":locacion, "Fecha":dia}
     listaEvento.append(info)
 
 def Eliminar(nombre, listaPersonas):
     bandera = False
     for i in listaPersonas:
-        if list(i.keys())[1] == nombre:
+        if list(i.values())[1] == nombre:
             listaPersonas.remove(i)
             bandera = True
         if not bandera:
             print("No se ha encontrado el asistente al evento")
 def Modificar(nombreEvento, listaEvento, NuevoNombre = False, Lugar = False, Fecha = False):
     for i in listaEvento:
-        if list(i.keys())[0] == nombreEvento:
+        if i['Nombre_Evento'] == nombreEvento:
             if NuevoNombre:
-                list(i.keys())[0] = NuevoNombre
+                i['Nombre_Evento'] = NuevoNombre
             elif Lugar:
-                list(i.keys())[1] = NuevoNombre
+                i['Lugar'] = Lugar
             elif Fecha:
-                list(i.keys())[2] = NuevoNombre
+                i['Fecha'] = Fecha
             
 listaPersonas = []
 listaEvento = []
@@ -66,28 +82,34 @@ while comando != 0:
         cargo = input("Digita el cargo del asistente: ")
 
         añadir(ide, nom, edad, cargo, listaPersonas)
+        MostrarRegistrado(listaPersonas)
     
     elif comando == 2:
         evento = input("Digita el nombre del evento: ")
         lugar = input("Digita el lugar del evento: ")
-        fecha = input("Digita el día: ")
+        fecha = int(input("Digita el día: "))
 
         Evento(evento, lugar, fecha, listaEvento)
+        MostrarEvento(listaEvento)
 
     elif comando == 3:
         nombre = input("Digita el nombre de la persona que quieres eliminar de la lista asistentes: ")
         Eliminar(nombre, listaPersonas)
+        MostrarRegistrado(listaPersonas)
 
     elif comando == 4:
         nombreEve = input("Ingresa el nombre del evento que quieres modificar: ")
-        opcion = input("Digita \n A: Si quieres modificar el nombre del evento \n B: Si quieres modificar Lugar \n C: Si quieres modificar fecha")
+        opcion = input("Digita \n A: Si quieres modificar el nombre del evento \n B: Si quieres modificar Lugar \n C: Si quieres modificar fecha \n")
         if opcion == "A":
             nombreNuevo = input("Ingresa el nuevo nombre del evento: ")
             Modificar(nombreEve, listaEvento, NuevoNombre=nombreNuevo)
+            MostrarEvento(listaEvento)
         elif opcion == "B":
             lugarNuevo = input("Ingresa nuevo Lugar: ")
-            Modificar(nombreEve, listaEvento, Lugar = lugarNuevo, Fecha = False)
+            Modificar(nombreEve, listaEvento, Lugar = lugarNuevo)
+            MostrarEvento(listaEvento)
         elif opcion == "C":
-            fechaNueva = input("Digita la nueva fecha del evento: ")
+            fechaNueva = input("Digita el nuevo dia del evento: ")
             Modificar(nombreEve, listaEvento, Fecha = fechaNueva)
+            MostrarEvento(listaEvento)
 
