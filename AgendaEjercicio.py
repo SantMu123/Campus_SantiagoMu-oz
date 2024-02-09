@@ -14,6 +14,7 @@ Para participar los empleados deben cancelar un aporte de 50.000 COP. Por lo tan
 
 la lista de empleados debe tener otro parametro ---> pago
 """
+
 def Pago(nombre, pago, listaPersonas):
     bandera = False
     for i in listaPersonas:
@@ -31,22 +32,21 @@ def MostrarRegistrado(listaPersonas):
         print(f"|{list(i.values())[0]:^10}|{list(i.values())[1]:^10}|{list(i.values())[2]:^10}|{list(i.values())[3]:^10}|")
 
 def MostrarEvento(listaEvento):
-    print("|----------|----------|----------|")
-    print("|--Nombre--|--Lugar---|--Fecha---|")
-    print("|----------|----------|----------|")
+    print("|----------|----------|----------|----------|")
+    print("|--Nombre--|--Lugar---|--Fecha---|--Estado--|")
+    print("|----------|----------|----------|----------|")
     for i in listaEvento:
         print(f"|{list(i.values())[0]:^10}|{list(i.values())[1]:^10}|{list(i.values())[2]:^10}|")
-        
-def unir(nombre, evento, listaEvento, listaPersonas):
-    listaEvento = []
-
 
 def añadir(documento, nombre, edad, cargo, listaPersonas, pago = False):
     info = {"documento":documento, "nombre":nombre, "edad":edad, "cargo":cargo, "Pago":pago}
     listaPersonas.append(info)
 
-def Evento(nombreEvento, locacion, dia, listaEvento, estado = True):
-    info = {"Nombre_Evento":nombreEvento, "Lugar":locacion, "Fecha":dia}
+def Evento(nombreEvento, locacion, diaEvento, listaEvento, diaActual):
+    if diaEvento < diaActual:
+        print("No es posible asignar el evento a una fecha pasada")
+        return None
+    info = {"Nombre_Evento":nombreEvento, "Lugar":locacion, "Fecha":diaEvento}
     listaEvento.append(info)
 
 def Eliminar(nombre, listaPersonas):
@@ -69,6 +69,7 @@ def Modificar(nombreEvento, listaEvento, NuevoNombre = False, Lugar = False, Fec
             
 listaPersonas = []
 listaEvento = []
+ListaConjunta = []
 comando = 1
 
 while comando != 0:
@@ -87,9 +88,10 @@ while comando != 0:
     elif comando == 2:
         evento = input("Digita el nombre del evento: ")
         lugar = input("Digita el lugar del evento: ")
-        fecha = int(input("Digita el día: "))
+        fecha = int(input("Digita el día del evento: "))
+        fechaActual = int(input("Digita el día Actual: "))
 
-        Evento(evento, lugar, fecha, listaEvento)
+        Evento(evento, lugar, fecha, listaEvento, fechaActual)
         MostrarEvento(listaEvento)
 
     elif comando == 3:
