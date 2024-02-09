@@ -17,23 +17,27 @@ def MostrarEvento(listaEvento):
         else:
             print("El evento ya se ha hecho")
 
-def unir(nombreEvento, NumeroAsistente, ListaEvento, listaEventoConjunto):
-    for evento, _ in ListaEvento:
-        if evento["Nombre_Evento"] == nombreEvento:
-            info = (evento, NumeroAsistente)
+def unir(nombreEvento, nombrePersona, ListaPersonas, ListaEvento, listaEventoConjunto):
+    for evento,participante in zip(ListaEvento,ListaPersonas):
+        if evento[0]["Nombre_Evento"] == nombreEvento and participante['nombre'] == nombrePersona:
+            info = (evento, participante)
             listaEventoConjunto.append(info)
     
 def MostrarEventoAsistentes(listaEventoConjunto):
-    for evento, asistentes in listaEventoConjunto:
-        if evento[1]:
-            print("|----------|----------|----------|----------|")
-            print("|--Nombre--|--Lugar---|--Fecha---|Asistentes|")
-            print("|----------|----------|----------|----------|")
-            print(f"|{evento[0]['Nombre_Evento']:^10}|{evento[0]['Lugar']:^10}|{evento[0]['Fecha']:^10}|{asistentes:^10}|")
-        else:
-            print("El evento ya se ha realizado")
+    for evento,asistentes in listaEventoConjunto:
+        print(f"Nombre Evento:{evento[0]['Nombre_Evento']:^10}")
+        print(f"Fecha Evento:{evento[0]['Lugar']:^10}")
+        print(f"Lugar Evento:{evento[0]['Fecha']:^10}")
+        print("-------------------------------------------------")
+        print(f"{"Evento Activo" if evento[0][1] else "Evento No Activo"}")
+        print("|----------|----------|----------|")
+        print("|-Asistente|--Cargo---|---Pago---|")
+        print("|----------|----------|----------|")
+        print(f"|{asistentes[1]['nombre']:^10}|{asistentes[3]['Cargo']:^10}|{evento[4]['Pago']:^10}|")
+        print("-------------------------------------------------")
 
-def añadir(documento, nombre, edad, cargo, listaPersonas, pago = False):
+
+def añadir(documento, nombre, edad, cargo, pago, listaPersonas):
     info = {"documento":documento, "nombre":nombre, "edad":edad, "cargo":cargo, "Pago":pago}
     listaPersonas.append(info)
 
@@ -87,13 +91,14 @@ while comando != 0:
         nom = input("Digita el nombre del asistente: ")
         edad = int(input("Digita la edad del asistente: "))
         cargo = input("Digita el cargo del asistente: ")
-        añadir(ide, nom, edad, cargo, listaPersonas)
+        pago = int(input("Digita el aporte del asistente"))
+        añadir(ide, nom, edad, cargo, pago, listaPersonas)
         MostrarRegistrado(listaPersonas)
         print("Tenemos los siguientes eventos Activos, a cual de ellos deseas añadir el nuevo asistente: ")
         MostrarEvento(listaEvento)
         
         event = input("Digita nombre de evento: ")
-        unir(event, nom, listaEvento, listaEventoConjunto)
+        unir(event, nom, listaPersonas, listaEvento, listaEventoConjunto)
         
         print("**********************Evento Actualizado*************************")
         MostrarEventoAsistentes(listaEventoConjunto)
@@ -133,3 +138,5 @@ while comando != 0:
     else:
         print("No se pudo modificar el evento. El evento no existe o ya se realizó.")
     """
+
+    #break es una estructura de ramificacion
