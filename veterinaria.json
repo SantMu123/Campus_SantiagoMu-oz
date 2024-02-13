@@ -1,0 +1,17 @@
+[
+    {
+        "tipo": "Perro",
+        "nPatas": 4,
+        "Raza": "Bombay"
+    },
+    {
+        "tipo": "Perro",
+        "nPatas": "5",
+        "Raza": "Golden"
+    },
+    {
+        "tipo": "Gato",
+        "nPatas": "4",
+        "Raza": "Felino"
+    }
+]
