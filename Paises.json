@@ -1,0 +1,17 @@
+[
+    {
+        "pais": "Colombia",
+        "continente": "Sur America",
+        "Poblacion": 55
+    },
+    {
+        "pais": "Japon",
+        "continente": "Asia",
+        "Poblacion": 45
+    },
+    {
+        "pais": "Australia",
+        "continente": "Oceania",
+        "Poblacion": 30
+    }
+]
